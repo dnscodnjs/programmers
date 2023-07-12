@@ -1,0 +1,17 @@
+import java.util.*;
+import java.io.*;
+
+class Solution {
+    public ArrayList<Long> solution(long n) {
+        
+        ArrayList<Long> al = new ArrayList<>();
+        
+        while(n > 0){
+            al.add(n%10);
+            
+            n/=10;
+        }
+        
+        return al;
+    }
+}
