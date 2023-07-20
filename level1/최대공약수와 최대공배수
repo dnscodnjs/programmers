@@ -1,0 +1,15 @@
+import java.util.*;
+import java.math.*;
+
+class Solution {
+    public int[] solution(int n, int m) {
+        BigInteger a = BigInteger.valueOf(n);
+        BigInteger b = BigInteger.valueOf(m);
+        
+        int gcd = (a.gcd(b)).intValue();
+        int lcm = (a.multiply(b).divide(BigInteger.valueOf(gcd))).intValue();
+        
+        int[] answer = {gcd, lcm};
+        return answer;
+    }
+}
