@@ -1,0 +1,41 @@
+import java.util.*;
+import java.io.*;
+
+class Solution {
+    public String[] solution(int n, int[] arr1, int[] arr2) {
+        
+        String[] newArr1 = new String[n];
+        String[] newArr2 = new String[n];
+        
+        
+        for(int i =0; i<n; i++){
+            
+            StringBuilder sb1 = new StringBuilder();
+            StringBuilder sb2 = new StringBuilder();
+            
+            for(int j =0; j<n; j++){
+                sb1.append(arr1[i] % 2);
+                sb2.append(arr2[i] % 2);
+                arr1[i] /= 2;
+                arr2[i] /= 2;
+            }
+            newArr1[i] = String.valueOf(sb1.reverse());
+            newArr2[i] = String.valueOf(sb2.reverse());
+        }
+        
+        String[] result = new String[n];
+        
+        for(int i =0; i<n; i++){
+            StringBuilder sb3 = new StringBuilder();
+            for(int j =0; j<n; j++){
+                if(newArr1[i].charAt(j) == '0' && newArr2[i].charAt(j) == '0'){
+                    sb3.append(" ");
+                }else
+                    sb3.append("#");
+            }
+            result[i] = String.valueOf(sb3);
+        }
+        
+        return result;
+    }
+}
