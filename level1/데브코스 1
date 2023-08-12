@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+
+        String s = in.next();
+
+        String[] alp = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"};
+
+        StringBuilder sb = new StringBuilder();
+
+        int cnt = 0;
+        char temp = s.charAt(0);
+
+        sb.append(temp);
+
+        for (int i = 1; i < s.length(); i++) {
+            if (temp == s.charAt(i)) {
+                cnt++;
+            } else {
+                sb.append(alp[cnt]);
+                cnt = 0;
+                temp = s.charAt(i);
+            }
+        }
+        sb.append(alp[cnt]);
+
+        System.out.println(sb);
+    }
+
+}
