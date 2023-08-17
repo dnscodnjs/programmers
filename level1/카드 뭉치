@@ -1,0 +1,23 @@
+class Solution {
+    public String solution(String[] cards1, String[] cards2, String[] goal) {
+        String answer = "No";
+        
+        int cnt1 = 0;
+        int cnt2 = 0;
+        
+        for(int i =0; i<goal.length; i++){
+            if(cnt1 < cards1.length && cards1[cnt1].equals(goal[i])){
+                cnt1 ++;
+                continue;
+                
+            } else if ( cards2[cnt2].equals(goal[i])){
+                cnt2 ++;
+                continue;
+            } else
+                return answer;
+        }
+        
+        answer = "Yes";
+        return answer;
+    }
+}
