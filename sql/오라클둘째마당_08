@@ -1,0 +1,128 @@
+-- Q1
+SELECT
+    e.deptno,
+    dname,
+    empno,
+    ename,
+    sal
+FROM
+    emp  e,
+    dept d
+WHERE
+        e.deptno = d.deptno
+    AND sal > 2000;
+
+SELECT
+    e.deptno,
+    dname,
+    empno,
+    ename,
+    sal
+FROM
+         emp e
+    JOIN dept d ON e.deptno = d.deptno
+WHERE
+    sal > 2000;
+
+-- Q2
+SELECT
+    e.deptno,
+    dname,
+    trunc(AVG(sal)) avg_sal,
+    MAX(sal)        max_sal,
+    MIN(sal)        min_sal,
+    COUNT(*)
+FROM
+    emp  e,
+    dept d
+WHERE
+    e.deptno = d.deptno
+GROUP BY
+    e.deptno,
+    dname;
+
+SELECT
+    e.deptno,
+    dname,
+    trunc(AVG(sal)) avg_sal,
+    MAX(sal)        max_sal,
+    MIN(sal)        min_sal,
+    COUNT(*)
+FROM
+         emp e
+    JOIN dept d ON e.deptno = d.deptno
+GROUP BY
+    e.deptno,
+    dname;
+
+-- Q3
+SELECT
+    d.deptno,
+    dname,
+    ename,
+    job,
+    sal
+FROM
+    emp  e,
+    dept d
+WHERE
+    e.deptno (+) = d.deptno;
+
+SELECT
+    d.deptno,
+    dname,
+    ename,
+    job,
+    sal
+FROM
+    emp  e
+    RIGHT OUTER JOIN dept d ON e.deptno = d.deptno;
+
+-- Q4
+SELECT
+    d.deptno,
+    dname,
+    e.empno,
+    e.ename,
+    e.mgr,
+    e.sal,
+    e.empno,
+    losal,
+    hisal,
+    grade,
+    e2.empno mgr_empno,
+    e2.ename mgr_ename
+FROM
+    emp      e,
+    dept     d,
+    emp      e2,
+    salgrade s
+WHERE
+        e.deptno (+) = d.deptno
+    AND e.mgr = e2.empno (+)
+    AND e.sal BETWEEN s.losal (+) AND s.hisal (+)
+ORDER BY
+    e.deptno,
+    e.empno;
+
+SELECT
+    d.deptno,
+    dname,
+    e.empno,
+    e.ename,
+    e.mgr,
+    e.sal,
+    e.empno,
+    losal,
+    hisal,
+    grade,
+    e2.empno mgr_empno,
+    e2.ename mgr_ename
+FROM
+    emp      e
+    RIGHT JOIN dept     d ON e.deptno = d.deptno
+    LEFT JOIN emp      e2 ON e.mgr = e2.empno
+    LEFT JOIN salgrade s ON e.sal BETWEEN s.losal AND s.hisal
+ORDER BY
+    e.deptno,
+    e.empno;
