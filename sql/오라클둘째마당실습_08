@@ -1,0 +1,133 @@
+-- 1번 문제
+SELECT
+    job,
+    empno,
+    ename,
+    sal,
+    deptno,
+    (
+        SELECT
+            dname
+        FROM
+            dept
+        WHERE
+            deptno = emp.deptno
+    ) dname
+FROM
+    emp
+WHERE
+    job = (
+        SELECT
+            job
+        FROM
+            emp
+        WHERE
+            ename = 'ALLEN'
+    );
+
+-- 2번 문제
+SELECT
+    empno,
+    ename,
+    (
+        SELECT
+            dname
+        FROM
+            dept
+        WHERE
+            deptno = emp.deptno
+    ) dname,
+    hiredate,
+    ename,
+    (
+        SELECT
+            loc
+        FROM
+            dept
+        WHERE
+            deptno = emp.deptno
+    ) loc,
+    sal,
+    (
+        SELECT
+            grade
+        FROM
+            salgrade
+        WHERE
+            emp.sal BETWEEN losal AND hisal
+    ) grade
+FROM
+    emp
+WHERE
+    sal > (
+        SELECT
+            AVG(sal)
+        FROM
+            emp
+    )
+ORDER BY
+    sal DESC,
+    deptno;
+    
+    
+-- 3번 문제
+
+SELECT
+    empno,
+    ename,
+    job,
+    deptno,
+    (
+        SELECT
+            dname
+        FROM
+            dept
+        WHERE
+            deptno = emp.deptno
+    ) dname,
+    (
+        SELECT
+            loc
+        FROM
+            dept
+        WHERE
+            deptno = emp.deptno
+    ) loc
+FROM
+    emp
+WHERE
+        deptno = 10
+    AND job NOT IN (
+        SELECT
+            job
+        FROM
+            emp
+        WHERE
+            deptno = 30
+    );
+    
+    
+-- 4번 문제
+SELECT
+    empno,
+    ename,
+    sal,
+    (
+        SELECT
+            grade
+        FROM
+            salgrade
+        WHERE
+            emp.sal BETWEEN losal AND hisal
+    ) grade
+FROM
+    emp
+WHERE
+    sal > (
+        SELECT
+            MAX(sal)
+        FROM
+            emp
+        WHERE
+            job = 'SALESMAN'
+    );
