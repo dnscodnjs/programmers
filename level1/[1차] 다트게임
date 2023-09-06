@@ -1,0 +1,61 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String dartResult) {
+        
+        int answer = 0;
+
+        Queue<Character> que = new LinkedList<>();
+
+        ArrayList<Integer> array = new ArrayList<>();
+
+        for (int i = 0; i < dartResult.length(); i++) {
+            que.add(dartResult.charAt(i));
+
+        }
+
+        System.out.println(que);
+        int j = 0;
+        for (int i = 0; i < dartResult.length(); i++) {
+            char c = que.poll();
+    
+
+            if (c - '0' >= 0 && c - '0' < 11) {
+                if(c == '1' && que.peek() == '0'){
+                    que.remove();
+                    array.add(10);
+                }
+                else {
+                    array.add(c - '0');
+                }
+            }  else if (c == 'S') {
+                array.set(j, (int) Math.pow(array.get(j), 1));
+                j++;
+            } else if (c == 'D') {
+                array.set(j, (int) Math.pow(array.get(j), 2));
+                j++;
+            } else if (c == 'T') {
+                array.set(j, (int) Math.pow(array.get(j), 3));
+                j++;
+            } else if (c == '*') {
+                if (array.size() <= 1) {
+                    array.set(j-1, array.get(j-1) * 2);
+                } else {
+                    array.set(j-1, array.get(j-1) * 2);
+                    array.set(j-2, array.get(j-2) * 2);
+                }
+            }else if (c == '#') {
+                    array.set(j-1, -array.get(j-1));
+            }
+
+            if(que.isEmpty()){
+                break;
+            }
+        }
+
+        for(int i =0; i<array.size(); i++){
+            answer += array.get(i);
+        }
+        return answer;
+    }
+}
