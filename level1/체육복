@@ -1,0 +1,44 @@
+import java.util.*;
+class Solution {
+    public int solution(int n, int[] lost, int[] reserve) {
+        
+        int result = lost.length;
+
+        Arrays.sort(lost);
+        Arrays.sort(reserve);
+
+
+        for (int i = 0; i < lost.length; i++) {
+            for (int j = 0; j < reserve.length; j++) {
+                if (lost[i] == reserve[j]) {
+                    reserve[j] = 0;
+                    lost[i] = 0;
+                    result--;
+                }
+            }
+        }
+
+        System.out.println(Arrays.toString(reserve));
+
+        for (int i = 0; i < lost.length; i++) {
+
+            for (int j = 0; j < reserve.length; j++) {
+
+                if (lost[i] != 0 && reserve[j] != 0 && lost[i] - 1 == reserve[j]) {
+                    result--;
+                    reserve[j] = 0;
+                    break;
+
+                }
+                if (lost[i] != 0 && reserve[j] != 0 &&lost[i] + 1 == reserve[j]) {
+                    result--;
+                    reserve[j] = 0;
+                    break;
+
+                }
+            }
+        }
+        
+        return n - result;
+    }
+}
