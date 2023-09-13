@@ -1,47 +1,55 @@
-import java.sql.SQLOutput;
 import java.util.*;
-
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-
-        String s = "abracadabra";
-
-        int cntX = 0;
+class Solution {
+    public int solution(String s) {
+        
+        int cntX = 1;
         int cntY = 0;
         int cnt = 0;
 
         int i = 1;
-
+        
         while (true) {
-            String c = s.substring(0, 1);
-            System.out.println(c);
+            
+            if(s.length() == 1){
+                cnt++;
+                break;
+            }
+            
+            char c = s.charAt(0);
 
-            cntX++;
-
-            if (!c.equals(s.charAt(i))) {
+            if (!(c == s.charAt(i))) {
                 cntY++;
+            } else if (c == s.charAt(i)) {
+                cntX++;
+            }
+            
+            if(i<s.length()){
                 i++;
-            } else cntX++;
-
-            System.out.println("cntx , cnty : " + cntX + " , " + cntY);
+            }
+            if(i == s.length()){
+                cnt ++;
+                break;
+            }
 
             if (cntX == cntY) {
                 s = s.substring(cntX + cntY);
-                System.out.println(s);
+                if (s.length() == 1) {
+                    cnt++;
+                }
                 cnt++;
 
-                i = 1;
-                cntX =0;
-                cntY =0;
+                i = 0;
+                cntX = 0;
+                cntY = 0;
 
             }
-            if(s.length() <= 1)
-                break;
-        }
 
-        System.out.println(cnt);
+            if (s.length() <= 1)
+                break;
+
+        }
+        
+        return cnt;
+    
     }
 }
