@@ -1,0 +1,57 @@
+import java.util.*;
+class Solution {
+    public String solution(String[] survey, int[] choices) {
+        Map<String, Integer> map = new HashMap<>();
+
+        map.put("R", 0);
+        map.put("T", 0);
+        map.put("C", 0);
+        map.put("F", 0);
+        map.put("J", 0);
+        map.put("M", 0);
+        map.put("A", 0);
+        map.put("N", 0);
+
+        System.out.println(map);
+
+        for (int i = 0; i < survey.length; i++) {
+
+            for (String key : check(survey[i].substring(0, 1),
+                    survey[i].substring(1, 2), choices[i]).keySet()) {
+
+                map.put(key, map.get(key) + check(survey[i].substring(0, 1),
+                        survey[i].substring(1, 2), choices[i]).get(key));
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        if (map.get("R") == map.get("T")) sb.append("R");
+        else sb.append((map.get("R") > map.get("T")) ? "R" : "T");
+        if (map.get("C") == map.get("F")) sb.append("C");
+        else sb.append((map.get("C") > map.get("F")) ? "C" : "F");
+        if (map.get("J") == map.get("M")) sb.append("J");
+        else sb.append((map.get("J") > map.get("M")) ? "J" : "M");
+        if (map.get("A") == map.get("N")) sb.append("A");
+        else sb.append((map.get("A") > map.get("N")) ? "A" : "N");
+        return sb.toString();
+    }
+    public static Map<String, Integer> check(String a, String da, int choice) {
+
+        Map<String, Integer> map = new HashMap<>();
+
+        if (choice == 1) {
+            map.put(a, 3);
+        } else if (choice == 2) {
+            map.put(a, 2);
+        } else if (choice == 3) {
+            map.put(a, 1);
+        } else if (choice == 5) {
+            map.put(da, 1);
+        } else if (choice == 6) {
+            map.put(da, 2);
+        } else if (choice == 7) {
+            map.put(da, 3);
+        }
+        return map;
+    }
+}
