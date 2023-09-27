@@ -1,0 +1,22 @@
+import java.util.*;
+class Solution {
+    boolean solution(String s) {
+        Stack<String> stack = new Stack<>();
+
+        boolean flag = true;
+        for(String c : s.split("")){
+            if(c.equals("(")){
+                stack.push(c);
+            }
+
+            if(c.equals(")")){
+                if(stack.size() == 0){
+                    flag = false;
+                }else stack.pop();
+            }
+        }
+
+        if(stack.size() != 0) flag = false;
+        return flag;
+    }
+}
