@@ -1,0 +1,44 @@
+import java.util.*;
+class Solution {
+    public String solution(String s) {
+        String[] arr = s.split(" ");
+
+        List<Integer> space = new ArrayList<>();
+
+        int spaceCount = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == ' ') {
+                spaceCount++;
+            } else if (spaceCount > 0) {
+                space.add(spaceCount);
+                spaceCount = 0;
+            }
+            if (i == s.length() - 1) {
+                if(spaceCount > 0){
+                    space.add(spaceCount);
+                }
+            }
+        }
+        System.out.println(space);
+        //문자 사이에 띄어쓰기가 a   b -> A   B
+        StringBuilder sb = new StringBuilder();
+
+        int j = space.size();
+        int m = 0;
+        for (String str : arr) {
+            for (int i = 0; i < str.length(); i++) {
+                sb.append(Character.toUpperCase(str.charAt(i))).append(str.substring(i + 1).toLowerCase());
+
+                if (m < j) {
+                    for (int k = 0; k < space.get(m); k++) {
+                        sb.append(" ");
+                    }
+                }
+                m++;
+                break;
+            }
+        }
+
+        return sb.toString();
+    }
+}
