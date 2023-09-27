@@ -1,0 +1,19 @@
+import java.util.*;
+class Solution {
+    public String solution(String s) {
+        String[] str = s.split(" ");
+        int[] arr = new int[str.length];
+        StringBuilder sb = new StringBuilder();
+
+        int i = 0;
+        for(String strArr : str){
+            arr[i] = Integer.parseInt(strArr);
+            i++;
+        }
+        Arrays.sort(arr);
+
+
+        sb.append(arr[0]).append(" ").append(arr[arr.length-1]);
+        return sb.toString();
+    }
+}
