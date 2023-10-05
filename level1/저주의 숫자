@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Solution {
+    public int solution(int n) {
+        
+        List<Integer> list = new ArrayList<>();
+        
+        int num = 0;
+        
+        while (list.size() < n) {
+            num++;
+            if (num % 3 != 0 && !contain3(num)) {
+                list.add(num);
+            }
+        }
+        
+        return list.get(n-1);
+    }
+    
+    public static boolean contain3(int n) {
+        String str = Integer.toString(n);
+        return str.contains("3");
+    }
+}
