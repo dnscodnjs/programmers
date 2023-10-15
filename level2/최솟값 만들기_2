@@ -1,0 +1,23 @@
+//두 배열에서 하나씩 곱해서 나오는 값들의 최소합을 구하는 문제
+//정렬한 후, A 배열의 작은 인덱스 B 배열의 큰 인덱스 값을 곱해나가면 최솟값이 나올거라 생각
+
+import java.util.*;
+class Solution
+{
+    public int solution(int []A, int []B)
+    {
+        Arrays.sort(A);
+        Arrays.sort(B);
+        
+        int sum = 0;
+        
+        // B 배열의 뒤에서부터 가져올 값 인덱스
+        int last = A.length - 1;
+        
+        for(int i = 0; i<A.length; i++){
+            sum += A[i] * B[last];
+            last--;
+        }
+        return sum;
+    }
+}
