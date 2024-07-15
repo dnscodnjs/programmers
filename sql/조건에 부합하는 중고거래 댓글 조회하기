@@ -1,0 +1,6 @@
+SELECT ugb.title AS TITLE, ugb.board_id AS BOARD_ID, 
+ugr.reply_id, ugr.writer_id , ugr.contents, TO_CHAR(ugr.CREATED_DATE, 'YYYY-MM-DD') AS CREATED_DATE
+FROM USED_GOODS_BOARD ugb, USED_GOODS_REPLY ugr
+WHERE ugb.BOARD_ID = ugr.BOARD_ID
+and TO_CHAR(ugb.CREATED_DATE, 'YYYY-MM') ='2022-10'
+ORDER BY ugr.CREATED_DATE, ugb.TITLE ASC;
